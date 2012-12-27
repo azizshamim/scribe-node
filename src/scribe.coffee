@@ -339,7 +339,7 @@ class Request
     if @verb == Verb.PUT || @verb == Verb.POST
       post_data = params_to_query @bodyParams, encode_data
       #some services might need content length header, but question is, if req.write handles it already?
-      #@headers['Content-Length'] = Buffer.byteLength(post_data, @encoding)
+      @headers['Content-Length'] = Buffer.byteLength(post_data, @encoding)
     options['headers'] = @headers
     #console.log 'OPTIONS: ' + JSON.stringify options
     protocol = if parsed_options['protocol'] == 'https:' then https else http
